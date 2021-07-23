@@ -51,5 +51,7 @@ module.exports = {
       },
     ],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    'camelcase': 'off',
+    'no-multiple-empty-lines': ['error', { 'max': 2 }],
   },
 };
