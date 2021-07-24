@@ -5,9 +5,10 @@ import autoJump from '@/lin/utils/auto-jump'
 import FaultTolerance from '@/lin/plugin/axios/fault-tolerance'
 import Permission from '@/lin/plugin/axios/permission'
 import store from '@/store'
-import { ErrorMessageObject, Tokens, UnifyErrorResponse } from '@/lin/models/types'
+import { ErrorMessageObject, UnifyErrorResponse } from '@/lin/models/data_type/response-types'
 import { saveAccessToken } from '@/lin/utils/token'
 import { ElMessage } from 'element-plus'
+import { TokensType } from '@/lin/models/data_type/user'
 
 export interface LinAxiosRequestConfig extends AxiosRequestConfig {
   handleError?: boolean;
@@ -82,7 +83,7 @@ _axios.interceptors.response.use(
 
     // assessToken相关，刷新令牌
     if (accessTokenException(code)) {
-      const refreshResult = (await _axios.get<Tokens>('cms/user/refresh')).data
+      const refreshResult = (await _axios.get<TokensType>('cms/user/refresh')).data
       saveAccessToken(refreshResult.access_token)
 
       // 将上次失败请求重发

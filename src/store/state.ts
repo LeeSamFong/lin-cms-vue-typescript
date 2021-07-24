@@ -1,11 +1,16 @@
+import { UserType } from '@/lin/models/data_type/user'
+
 export interface State {
-  user: { [k in string]: unknown } | null;
+  user: UserType | null;
   loggedIn: boolean; // 是否登录
+
+  permissions: string[],
 }
 
 const state: State = {
-  user: {}, // 当前用户
+  user: null, // 当前用户
   loggedIn: false,
+  permissions: [],
 }
 
 export default state

@@ -9,4 +9,6 @@ const Config = {
   useFrontEndErrorMsg: false, // 默认采用后端返回异常
 }
 
+export const MAX_SUCCESS_CODE = 9998
+
 export default Config

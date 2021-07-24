@@ -1,19 +1,26 @@
 import { MutationTree } from 'vuex'
 import { State } from '@/store/state'
-import { REMOVE_LOGGED_IN, SET_LOGGED_IN, SET_USER } from '@/store/mutation-type'
+import { UserType } from '@/lin/models/data_type/user'
 
 const mutations: MutationTree<State> = {
-  [SET_LOGGED_IN](state) {
+  setLoggedIn(state) {
     state.loggedIn = true
   },
 
-  [REMOVE_LOGGED_IN](state) {
+  removeLoggedIn(state) {
     state.loggedIn = false
     state.user = null
   },
 
-  [SET_USER](state, user: State['user']) {
+  setUser(state, user: UserType) {
     state.user = user
+  },
+
+  setUserPermissions(state, permissions: UserType['permissions']) {
+    state.permissions = permissions
+      .map(permission => Object.values(permission))
+      .flat(2)
+      .map(p => p.permission)
   },
 }
 

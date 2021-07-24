@@ -7,8 +7,3 @@ export interface UnifyErrorResponse {
   message: string | string[] | ErrorMessageObject;
   request: string;
 }
-
-export interface Tokens {
-  access_token: string;
-  refresh_token: string;
-}
