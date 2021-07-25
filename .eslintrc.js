@@ -47,14 +47,15 @@ module.exports = {
     'object-curly-newline': [
       'error',
       {
-        "multiline": true,
-        // ImportDeclaration: 'never',
+        ObjectPattern: { 'multiline': true },
+        ImportDeclaration: 'never',
       },
     ],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'camelcase': 'off',
     'symbol-description': 'off',
     'import/named': 'off',
+    'no-continue': 'off',
     'no-multiple-empty-lines': ['error', { 'max': 2 }],
   },
-};
+}

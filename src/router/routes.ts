@@ -15,11 +15,10 @@ const routes: RouteRecordRaw[] = [
     name: 'Login',
     component: () => import('@/views/login/login.vue'),
   },
-  // TODO
-  // {
-  //   redirect: '/error-page',
-  //   path: '/:pathMatch(.*)',
-  // },
+  {
+    redirect: '/error-page',
+    path: '/:pathMatch(.*)',
+  },
 ]
 
 export default routes
