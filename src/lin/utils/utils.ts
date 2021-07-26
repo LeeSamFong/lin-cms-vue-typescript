@@ -1,4 +1,6 @@
-import { debounce, throttle } from 'lodash'
+import { debounce, throttle, cloneDeep } from 'lodash'
+import { LinRouteType } from '@/router/route-type'
+import { UserType } from '@/lin/models/data_type/user'
 
 class Utils {
   static debounce = (...[func, wait = 50]: Parameters<typeof debounce>) => debounce(func, wait)
@@ -85,6 +87,26 @@ class Utils {
     })
 
     return finallyArr
+  }
+
+  /**
+   * 深度遍历，深拷贝
+   */
+  static deepClone = <T>(value: T) => cloneDeep(value)
+
+  /**
+   * 判断权限
+   */
+  static hasPermission(permissions: string[], route: LinRouteType, user: UserType | null) {
+    if (user?.admin) {
+      return true
+    }
+
+    if (route.permission) {
+      return permissions.some(permission => route.permission?.includes(permission))
+    }
+
+    return true
   }
 }
 
