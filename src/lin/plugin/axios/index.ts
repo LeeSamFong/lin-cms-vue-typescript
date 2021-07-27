@@ -134,7 +134,18 @@ _axios.interceptors.response.use(
 
     return res
   },
-  error => Promise.reject(error),
+  error => {
+    if (!error.response) {
+      ElMessage.error('请检查 API 是否正常')
+      console.error('error: ', error)
+    }
+
+    // 判断请求超时
+    if (error.code === 'ECONNABORTED' && error.message.includes('timeout')) {
+      ElMessage.warning('请求超时')
+    }
+    return Promise.reject(error)
+  },
 )
 
 
