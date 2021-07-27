@@ -132,7 +132,7 @@ _axios.interceptors.response.use(
 
     ElMessage.error(tipMessage)
 
-    return res
+    return Promise.reject(res)
   },
   error => {
     if (!error.response) {
