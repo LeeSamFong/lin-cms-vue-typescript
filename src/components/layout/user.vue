@@ -33,7 +33,9 @@
                         size="small"
                         v-model="nickname"
                         ref="input"
-                        @blur="blur"
+                        v-loading="nicknameLoading"
+                        @blur="change"
+                        @change="change"
               />
               <div class="desc"
                    v-if="!nicknameChanged"
@@ -177,7 +179,12 @@ export default defineComponent({
       })
     }
 
-    async function blur() {
+    const nicknameLoading = ref(false)
+    // 记录原来的nickname
+    let _nickname = nickname.value
+
+    async function change() {
+      if (nicknameLoading.value) return
       if (!nickname.value) {
         nicknameChanged.value = false
         return
@@ -186,9 +193,20 @@ export default defineComponent({
         nicknameChanged.value = false
         return
       }
+      nicknameLoading.value = true
       await UserModel.updateUserInfo({
         nickname: nickname.value,
+      }).catch(error => {
+        nicknameLoading.value = false
+        nickname.value = _nickname
+        nicknameChanged.value = false
+        return Promise.reject(error)
       })
+
+      nicknameLoading.value = false
+      _nickname = nickname.value
+      nicknameChanged.value = false
+
       ElMessage({
         type: 'success',
         message: '更新昵称成功',
@@ -221,10 +239,11 @@ export default defineComponent({
       cropVisible,
       nicknameChanged,
       dialogFormVisible,
+      nicknameLoading,
       fileChange,
       switchCropVisible,
       changeNickname,
-      blur,
+      change,
       goToCenter,
       outLogin,
     }
