@@ -1,6 +1,6 @@
 import { MutationTree } from 'vuex'
 import { State } from '@/store/state'
-import { UserType } from '@/lin/models/data_type/user'
+import { UserInfoType, UserType } from '@/lin/models/data_type/user'
 
 const mutations: MutationTree<State> = {
   setLoggedIn(state) {
@@ -14,6 +14,10 @@ const mutations: MutationTree<State> = {
 
   setUser(state, user: UserType) {
     state.user = user
+  },
+
+  setUserInfo(state, userInfo: UserInfoType) {
+    state.userInfo = userInfo
   },
 
   setUserPermissions(state, permissions: UserType['permissions']) {

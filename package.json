@@ -13,7 +13,9 @@
     "element-plus": "^1.0.2-beta.57",
     "lodash": "^4.17.21",
     "mitt": "^3.0.0",
+    "screenfull": "^5.1.0",
     "vue": "^3.0.0",
+    "vue-picture-cropper": "^0.1.9",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
   },

@@ -14,7 +14,7 @@
               <i class="iconfont icon-fold"
                  :class="{ rotate: foldState }"
                  @click="changeSidebarState"/>
-              <!-- TODO nav-bar -->
+              <nav-bar/>
             </div>
             <el-collapse-transition>
               <!-- TODO reuse-bab -->
@@ -41,6 +41,7 @@ import emitter from '@/lin/utils/emitter'
 import Utils from '@/lin/utils/utils'
 import { useRoute } from 'vue-router'
 import Sidebar from '@/components/layout/sidebar/sidebar.vue'
+import NavBar from '@/components/layout/nav-bar.vue'
 
 const navBarHeight = 66 // header高度
 const reuseTabHeight = 70 // 历史记录栏高度
@@ -50,7 +51,7 @@ const totalHeight = navBarHeight + reuseTabHeight + marginHeight
 
 export default defineComponent({
   name: 'Home',
-  components: { Sidebar, AppMain },
+  components: { NavBar, Sidebar, AppMain },
   setup() {
     const route = useRoute()
 

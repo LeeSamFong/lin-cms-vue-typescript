@@ -60,10 +60,13 @@ export default defineComponent({
     const getInformation = async () => {
       try {
         const user = await UserModel.getPermissions()
-        store.dispatch('setUserAndState', user)
+        const userInfo = await UserModel.getInformation()
+        await store.dispatch('setUserAndState', user)
+        store.commit('setUserInfo', userInfo)
         store.commit('setUserPermissions', user.permissions)
       } catch (e) {
         console.error(e)
+        return Promise.reject(e)
       }
     }
 

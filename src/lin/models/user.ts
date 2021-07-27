@@ -1,8 +1,6 @@
 import linAxios from '@/lin/plugin/axios'
-import { TokensType, UserType } from '@/lin/models/data_type/user'
+import { TokensType, UserInfoType, UserType } from '@/lin/models/data_type/user'
 import { saveTokens } from '@/lin/utils/token'
-import store from '@/store'
-import { State } from '@/store/state'
 
 class UserModel {
   /**
@@ -13,6 +11,7 @@ class UserModel {
   static async getToken(username: string, password: string) {
     const tokens = await linAxios<TokensType>({
       url: 'cms/user/login',
+      method: 'post',
       data: {
         username,
         password,
@@ -23,12 +22,32 @@ class UserModel {
   }
 
   /**
+   * 获取当前用户信息
+   */
+  static async getInformation() {
+    return linAxios<UserInfoType>('cms/user/information')
+  }
+
+  /**
    * 获取当前用户信息和所拥有的权限
    */
   static async getPermissions(): Promise<UserType> {
-    const info = await linAxios<UserType>('cms/user/permission')
-    const storeUser = store.getters.user as State['user']
-    return { ...storeUser, ...info }
+    return linAxios<UserType>('cms/user/permissions')
+  }
+
+  static async updateUserInfo(userInfo: {
+    email?: string;
+    nickname?: string;
+    username?: string;
+    avatar?: string;
+  }) {
+    await linAxios({
+      url: 'cms/user',
+      method: 'put',
+      data: {
+        ...userInfo,
+      },
+    })
   }
 }
 

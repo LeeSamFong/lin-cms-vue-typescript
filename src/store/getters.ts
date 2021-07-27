@@ -1,5 +1,5 @@
 import { GetterTree } from 'vuex'
-import { State } from '@/store/state'
+import state, { State } from '@/store/state'
 import Utils from '@/lin/utils/utils'
 import { LinRouteType } from '@/router/route-type'
 import { UserType } from '@/lin/models/data_type/user'
@@ -142,6 +142,51 @@ const getters: GetterTree<State, State> = {
     }
 
     return deepGetSidebar(permissionStageConfig, sidebarLevel)
+  },
+
+  getStageInfo: state => {
+    const { stageConfig } = state
+    const cache: {
+      [k in string]: LinRouteType[];
+    } = {}
+
+    function findStage(stages: LinRouteType[], name: symbol): LinRouteType[] | null {
+      for (const stage of stages) {
+        // 判断是否有子路由
+        // 如果没有子路由，当前路由为最底层路由
+        if (!stage.children?.length) {
+          // 因为已经是最底层路由，名称不相等则继续寻找下一个
+          if (stage.name !== name) {
+            continue
+          }
+          return [stage]
+        }
+
+        // 这是有子路由的情况
+        // 继续通过findStage递归寻找是否存在name
+        const result = findStage(stage.children, name)
+
+        // 如果存在，则把当前的stage放在首位，result放在后位返回
+        if (!result) {
+          continue
+        }
+        return [stage, ...result]
+      }
+
+      // 已经遍历完所有路由，没有找到与name相等的，返回null结束一切
+      return null
+    }
+
+    return (name: symbol) => {
+      if (cache[name as never]) {
+        return cache[name as never]
+      }
+      const stageInfo = findStage(stageConfig, name)
+      if (stageInfo?.length) {
+        cache[name as never] = stageInfo
+      }
+      return stageInfo
+    }
   },
 }
 
