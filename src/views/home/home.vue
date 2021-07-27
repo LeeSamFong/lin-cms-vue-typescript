@@ -110,7 +110,7 @@ export default defineComponent({
         sidebarWidth.value = _sidebarWidth
         return
       }
-      sidebarWidth.value = isCollapse.value ? _sidebarWidth : '64px'
+      sidebarWidth.value = !isCollapse.value ? _sidebarWidth : '64px'
     })
 
     watch(route, () => {
