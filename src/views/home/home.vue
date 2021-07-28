@@ -21,11 +21,11 @@
             </el-collapse-transition>
           </div>
         </el-header>
-        <el-main ref="main">
+        <el-main id="mainStage" ref="main">
           <menu-tab/>
           <app-main ref="appMain"/>
         </el-main>
-        <!-- TODO back-top -->
+        <el-backtop target="#mainStage"/>
       </el-container>
       <div class="sidenav-mask"
            :class="{ show: isPhone && isCollapse}"
