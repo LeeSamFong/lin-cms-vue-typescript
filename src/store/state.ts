@@ -15,6 +15,7 @@ export interface State {
   stageConfig: LinRouteType[];
 
   sidebarLevel: number;
+  defaultRoute: string;
 }
 
 const state: State = {
@@ -25,6 +26,7 @@ const state: State = {
 
   stageConfig: stageRoutes,
   sidebarLevel: Config.sidebarLevel || 3,
+  defaultRoute: Config.defaultRoute || '/about',
 }
 
 export default state

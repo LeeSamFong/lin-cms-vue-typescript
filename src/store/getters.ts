@@ -1,5 +1,5 @@
 import { GetterTree } from 'vuex'
-import state, { State } from '@/store/state'
+import { State } from '@/store/state'
 import Utils from '@/lin/utils/utils'
 import { LinRouteType } from '@/router/route-type'
 import { UserType } from '@/lin/models/data_type/user'
@@ -15,6 +15,8 @@ export interface SideRoute {
 let stageMap: {
   [k in string]: LinRouteType;
 } = {}
+
+export type StageMapType = typeof stageMap
 
 /**
  * 在侧边栏展示时，如果当前路由 children 属性为空，则删除该路由
@@ -143,6 +145,28 @@ const getters: GetterTree<State, State> = {
 
     return deepGetSidebar(permissionStageConfig, sidebarLevel)
   },
+
+  /**
+   * 获取有权限的所有节点配置对象
+   */
+  getStageByName: () => (name: symbol) => {
+    const result = stageMap[name as never]
+    if (!result) return
+    return result
+  },
+
+  /**
+   * 获取有权限的所有节点配置对象
+   */
+  getStageByRoute: () => (path: string) => {
+    const result = Object.getOwnPropertySymbols(stageMap)
+      .find(key => stageMap[key as never].route === path)
+
+    if (!result) return
+    return stageMap[result as never]
+  },
+
+  stageList: () => stageMap,
 
   getStageInfo: state => {
     const { stageConfig } = state
