@@ -12,8 +12,11 @@ import store, { storeKey } from '@/store'
 import '@/assets/style/index.scss'
 import 'element-plus/lib/theme-chalk/index.css'
 import '@/assets/style/realize/element-variable.scss'
+import { filters } from '@/lin/filters'
 
 const app = createApp(App)
+
+app.config.globalProperties.$filters = filters
 
 app
   .use(store, storeKey)

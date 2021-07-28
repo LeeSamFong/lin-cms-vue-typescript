@@ -56,6 +56,7 @@ module.exports = {
     'symbol-description': 'off',
     'import/named': 'off',
     'no-continue': 'off',
+    'no-unused-expressions': 'off',
     'no-multiple-empty-lines': ['error', { max: 2 }],
   },
 }

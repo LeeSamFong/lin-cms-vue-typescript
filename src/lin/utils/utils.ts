@@ -3,6 +3,28 @@ import { LinRouteType } from '@/router/route-type'
 import { UserType } from '@/lin/models/data_type/user'
 
 class Utils {
+  static cutString(str: string, length: number) {
+    if (str.length * 2 <= length) return str
+
+    let strLength = 0
+    let s = ''
+    for (let i = 0; i < str.length; i++) {
+      s += str.charAt(i)
+      if (str.charCodeAt(i) > 128) {
+        strLength += 2
+        if (strLength >= length) {
+          return `${s.substring(0, s.length - 1)}...`
+        }
+      } else {
+        strLength += 1
+        if (strLength >= length) {
+          return `${s.substring(0, s.length - 2)}...`
+        }
+      }
+    }
+    return s
+  }
+
   static debounce = (...[func, wait = 50]: Parameters<typeof debounce>) => debounce(func, wait)
 
   static throttle = (...[func, wait = 50]: Parameters<typeof throttle>) => throttle(func, wait)

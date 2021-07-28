@@ -22,7 +22,7 @@
           </div>
         </el-header>
         <el-main ref="main">
-          <!-- TODO menu-tab -->
+          <menu-tab/>
           <app-main ref="appMain"/>
         </el-main>
         <!-- TODO back-top -->
@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, getCurrentInstance, onMounted, onUnmounted, reactive, ref, watch } from 'vue'
+import { computed, defineComponent, onMounted, onUnmounted, reactive, ref, watch } from 'vue'
 import AppMain from '@/components/layout/app-main.vue'
 import emitter from '@/lin/utils/emitter'
 import Utils from '@/lin/utils/utils'
@@ -43,6 +43,7 @@ import { useRoute } from 'vue-router'
 import Sidebar from '@/components/layout/sidebar/sidebar.vue'
 import NavBar from '@/components/layout/nav-bar.vue'
 import ReuseTab from '@/components/layout/reuse-tab.vue'
+import MenuTab from '@/components/layout/menu-tab.vue'
 
 const navBarHeight = 66 // header高度
 const reuseTabHeight = 70 // 历史记录栏高度
@@ -52,7 +53,7 @@ const totalHeight = navBarHeight + reuseTabHeight + marginHeight
 
 export default defineComponent({
   name: 'Home',
-  components: { ReuseTab, NavBar, Sidebar, AppMain },
+  components: { MenuTab, ReuseTab, NavBar, Sidebar, AppMain },
   setup() {
     const route = useRoute()
 
