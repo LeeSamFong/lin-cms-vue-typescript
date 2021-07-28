@@ -57,6 +57,7 @@ module.exports = {
     'import/named': 'off',
     'no-continue': 'off',
     'no-unused-expressions': 'off',
+    'import/no-cycle': 'off',
     'no-multiple-empty-lines': ['error', { max: 2 }],
   },
 }

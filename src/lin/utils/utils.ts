@@ -1,5 +1,5 @@
-import { debounce, throttle, cloneDeep } from 'lodash'
-import { LinRouteType } from '@/router/route-type'
+import { cloneDeep, debounce, throttle } from 'lodash'
+import { SimpleLinRouteType } from '@/router/route-type'
 import { UserType } from '@/lin/models/data_type/user'
 
 class Utils {
@@ -119,7 +119,7 @@ class Utils {
   /**
    * 判断权限
    */
-  static hasPermission(permissions: string[], route: LinRouteType, user: UserType | null) {
+  static hasPermission(permissions: string[], route: SimpleLinRouteType, user: UserType | null) {
     if (user?.admin) {
       return true
     }

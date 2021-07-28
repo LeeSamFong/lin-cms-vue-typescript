@@ -35,12 +35,14 @@ export interface LinRouteType {
   blueBaseColor?: string;
 }
 
+export type SimpleLinRouteType = Pick<LinRouteType,
+  | 'title'
+  | 'icon'
+  | 'permission'
+  | 'type'>
+
 export type LinRouteRecordRaw = RouteRecordRaw & {
-  meta?: Pick<LinRouteType,
-    | 'title'
-    | 'icon'
-    | 'permission'
-    | 'type'> & {
+  meta?: SimpleLinRouteType & {
     blueBaseColor: string;
   }
 }
