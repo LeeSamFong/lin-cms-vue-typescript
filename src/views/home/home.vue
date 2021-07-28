@@ -44,6 +44,8 @@ import Sidebar from '@/components/layout/sidebar/sidebar.vue'
 import NavBar from '@/components/layout/nav-bar.vue'
 import ReuseTab from '@/components/layout/reuse-tab.vue'
 import MenuTab from '@/components/layout/menu-tab.vue'
+import { useEmitterListener } from '@/lin/hooks/emitter'
+import { useEventListener } from '@/lin/hooks/window'
 
 const navBarHeight = 66 // header高度
 const reuseTabHeight = 70 // 历史记录栏高度
@@ -151,14 +153,8 @@ export default defineComponent({
       }
     }
 
-    onMounted(() => {
-      const debounceResize = Utils.debounce(onResize, 35)
-      window.addEventListener('resize', debounceResize)
-
-      onUnmounted(() => {
-        window.removeEventListener('resize', debounceResize)
-      })
-    })
+    const debounceResize = Utils.debounce(onResize, 35)
+    useEventListener('resize', debounceResize)
 
     const operate = ref<HTMLElement | null>(null)
 
@@ -174,16 +170,10 @@ export default defineComponent({
       }
     }
 
-    // 监测屏幕宽度 折叠左侧菜单栏
-    onMounted(() => {
-      emitter.on('noReuse', noReuse)
-      emitter.on('hasReuse', hasReuse)
-    })
 
-    onUnmounted(() => {
-      emitter.off('noReuse', noReuse)
-      emitter.off('hasReuse', hasReuse)
-    })
+    // 监测屏幕宽度 折叠左侧菜单栏
+    useEmitterListener('noReuse', noReuse)
+    useEmitterListener('hasReuse', hasReuse)
 
     return {
       sidebarWidth,
