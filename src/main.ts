@@ -13,6 +13,7 @@ import '@/assets/style/index.scss'
 import 'element-plus/lib/theme-chalk/index.css'
 import '@/assets/style/realize/element-variable.scss'
 import { filters } from '@/lin/filters'
+import permissionDirective from '@/lin/directive/authorize'
 
 const app = createApp(App)
 
@@ -23,5 +24,7 @@ app
   .use(router)
 
 app.use(ElementPlus, { locale })
+
+app.directive('permission', permissionDirective)
 
 app.mount('#app')
