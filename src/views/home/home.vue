@@ -10,7 +10,7 @@
       <el-container>
         <el-header class="header">
           <div class="left">
-            <div class="operate" ref="operate">
+            <div id="operate" class="operate" ref="operate">
               <i class="iconfont icon-fold"
                  :class="{ rotate: foldState }"
                  @click="changeSidebarState"/>
@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, onUnmounted, reactive, ref, watch } from 'vue'
+import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
 import AppMain from '@/components/layout/app-main.vue'
 import emitter from '@/lin/utils/emitter'
 import Utils from '@/lin/utils/utils'
