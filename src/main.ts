@@ -4,6 +4,7 @@ import ElementPlus from 'element-plus'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import locale from 'element-plus/lib/locale/lang/zh-cn'
+import 'dayjs/locale/zh-cn'
 
 import App from '@/App.vue'
 import router from '@/router'

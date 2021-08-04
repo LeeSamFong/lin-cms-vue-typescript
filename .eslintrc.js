@@ -59,5 +59,9 @@ module.exports = {
     'no-unused-expressions': 'off',
     'import/no-cycle': 'off',
     'no-multiple-empty-lines': ['error', { max: 2 }],
+    'prefer-destructuring': ['warn', {
+      'array': false,
+      'object': true,
+    }],
   },
 }
