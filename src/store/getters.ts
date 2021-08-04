@@ -28,7 +28,7 @@ function IterationDeleteMenuChildren(arr: LinRouteType[]) {
 
   for (const i in arr) {
     const { children } = arr[i]
-    if (!children?.length) {
+    if (children && !children.length) {
       delete arr[i]
     } else if (children?.length) {
       IterationDeleteMenuChildren(children)
