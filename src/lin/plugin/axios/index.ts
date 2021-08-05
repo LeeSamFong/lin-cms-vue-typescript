@@ -135,6 +135,9 @@ _axios.interceptors.response.use(
     return Promise.reject(res)
   },
   error => {
+    if (axios.isCancel(error)) {
+      return Promise.reject(error)
+    }
     if (!error.response) {
       ElMessage.error('请检查 API 是否正常')
       console.error('error: ', error)

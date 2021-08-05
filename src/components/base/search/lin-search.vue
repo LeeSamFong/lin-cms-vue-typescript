@@ -19,20 +19,35 @@ import Utils from '@/lin/utils/utils'
 export default defineComponent({
   name: 'LinSearch',
   props: {
+    modelValue: {
+      type: String,
+      default: '',
+    },
     placeholder: {
       type: String,
       default: '请输入内容',
     },
+    debounce: {
+      type: Number,
+      default: 1000,
+    },
   },
+  emits: ['update:modelValue', 'query'],
   setup(props, { emit }) {
     const keyword = ref('')
 
     const debounceEmit = Utils.debounce(() => {
       emit('query', keyword.value)
-    }, 1000)
+      emit('update:modelValue', keyword.value)
+    }, props.debounce)
 
     watch(keyword, () => {
       debounceEmit()
+    })
+
+    watch(() => props.modelValue, newValue => {
+      if (keyword.value === newValue) return
+      keyword.value = newValue
     })
 
     function clear() {

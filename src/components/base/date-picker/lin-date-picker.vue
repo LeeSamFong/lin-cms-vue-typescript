@@ -6,7 +6,6 @@
       range-separator="至"
       start-placeholder="开始日期"
       end-placeholder="结束日期"
-      align="right"
       size="medium"
       popper-class="date-box"
       :default-time="defaultTime"
@@ -22,9 +21,12 @@ import dayjs from 'dayjs'
 
 export default defineComponent({
   name: 'LinDatePicker',
+  props: {
+    modelValue: Array,
+  },
   data() {
     return {
-      value: '',
+      value: [] as string[],
       defaultTime: [
         new Date(2000, 1, 1, 0, 0, 0),
         new Date(2000, 2, 1, 23, 59, 59),
@@ -57,14 +59,23 @@ export default defineComponent({
 
     }
   },
+  emits: ['update:modelValue', 'dateChange'],
   watch: {
-    value(date: any) {
-      this.$emit('dateChange', date ? date.map((item: any) => dayjs(item).format('YYYY-MM-DD HH:mm:ss')) : '')
+    value(date: string[]) {
+      const _date = date ? date.map(item => dayjs(item)
+        .format('YYYY-MM-DD HH:mm:ss')) : []
+
+      this.$emit('dateChange', _date)
+      this.$emit('update:modelValue', _date)
+    },
+    modelValue(date: string[]) {
+      if (date === this.value) return
+      this.value = date
     },
   },
   methods: {
     clear() {
-      this.value = ''
+      this.value = []
     },
   },
 })

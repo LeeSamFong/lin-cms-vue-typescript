@@ -10,7 +10,7 @@ import store from '@/store'
  * @param {*} user 当前用户实例
  */
 function isAllowed(permission: string, permissions: string[], user: UserType | null) {
-  // if (user?.admin) return true
+  if (user?.admin) return true
 
   return permissions.includes(permission)
 }

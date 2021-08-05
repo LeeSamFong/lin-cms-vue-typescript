@@ -11,4 +11,6 @@ const Config = {
 
 export const MAX_SUCCESS_CODE = 9998
 
+export const PageSize = 20
+
 export default Config

@@ -7,3 +7,10 @@ export interface UnifyErrorResponse {
   message: string | string[] | ErrorMessageObject;
   request: string;
 }
+
+export interface UnifyPageResponse<T> {
+  total: number;
+  items: T[];
+  page: number;
+  count: number;
+}

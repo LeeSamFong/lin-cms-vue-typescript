@@ -14,6 +14,17 @@ let stageRoutes: LinRouteType[] = [
     order: 1,
   },
   {
+    title: '日志管理',
+    type: 'view',
+    name: Symbol('log'),
+    route: '/log',
+    filePath: 'views/log/log.vue',
+    inNav: true,
+    icon: 'iconfont icon-rizhiguanli',
+    order: 2,
+    permission: ['查询所有日志'],
+  },
+  {
     title: '404',
     type: 'view',
     name: Symbol('404'),
