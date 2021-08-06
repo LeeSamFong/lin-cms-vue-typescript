@@ -60,8 +60,8 @@ module.exports = {
     'import/no-cycle': 'off',
     'no-multiple-empty-lines': ['error', { max: 2 }],
     'prefer-destructuring': ['warn', {
-      'array': false,
-      'object': true,
+      array: false,
+      object: true,
     }],
   },
 }

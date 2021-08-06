@@ -49,6 +49,24 @@ class UserModel {
       },
     })
   }
+
+  /**
+   * 用户修改密码
+   * @param form
+   */
+  static updatePassword(form: {
+    old_password: string;
+    new_password: string;
+    confirm_password: string;
+  }) {
+    return linAxios({
+      url: 'cms/user/change_password',
+      method: 'put',
+      data: {
+        ...form,
+      },
+    })
+  }
 }
 
 export default UserModel

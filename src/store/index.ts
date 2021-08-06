@@ -11,6 +11,7 @@ const vuexLocal = new VuexPersistence<State>({
   storage: window.localStorage,
   reducer: stateData => ({
     user: stateData.user,
+    userInfo: stateData.userInfo,
     loggedIn: stateData.loggedIn,
     permissions: stateData.permissions,
   }),
