@@ -5,7 +5,7 @@
       <!-- 分组选择下拉框 -->
     </div>
     <!-- 表格 -->
-    <el-table :data="paging.items"
+    <el-table :data="tableData"
               v-loading="loading"
               @row-dblclick="handleEdit"
     >
@@ -94,6 +94,11 @@ export default defineComponent({
     const dialogFormVisible = ref(false)
 
     const paging = AdminModel.useAdminUsersPagination()
+    const tableData = computed(() => paging.items.map(item => ({
+      ...item,
+      groupNames: item.groups.map(group => group.name).join('，')
+    })))
+
     const {
       data: allGroups,
       loading: allGroupsLoading,
@@ -209,6 +214,7 @@ export default defineComponent({
       allGroups,
       dialogFormVisible,
       paging,
+      tableData,
       loading,
       activeTab,
 

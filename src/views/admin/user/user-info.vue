@@ -161,6 +161,7 @@ export default defineComponent({
         if (!props.id) return
         await editRun(userInfo.email, userInfo.groupIds, props.id)
         ElMessage.success(editAsync.data.value?.message as string)
+        emit('handleInfoResult', true)
         resetForm()
       })
     }
