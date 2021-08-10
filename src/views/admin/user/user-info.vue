@@ -147,6 +147,7 @@ export default defineComponent({
         if (props.pageType === 'add') {
           await addRun(userInfo)
           ElMessage.success(addAsync.data.value?.message as string)
+          resetForm()
           return
         }
 
