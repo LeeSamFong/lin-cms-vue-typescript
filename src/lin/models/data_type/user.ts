@@ -1,3 +1,5 @@
+import { GroupLevelType } from '@/lin/models/data_type/admin'
+
 export interface TokensType {
   access_token: string;
   refresh_token: string;
@@ -17,7 +19,9 @@ export interface UserType {
   }[];
 }
 
-export interface GroupsType {
+export interface UserGroupType {
+  id: number;
+
   /**
    * 分组名称，例如：搬砖者
    */
@@ -33,7 +37,8 @@ export interface GroupsType {
    * 2: 游客
    * 3: 普通用户
    */
-  level: 1 | 2 | 3;
+  // level: 1 | 2 | 3;
+  level: GroupLevelType;
 }
 
 export interface UserInfoType {
@@ -62,5 +67,5 @@ export interface UserInfoType {
   /**
    * 分组
    */
-  groups: GroupsType[];
+  groups: UserGroupType[];
 }

@@ -2,7 +2,7 @@ export type ErrorMessageObject = {
   [k in string]: string
 }
 
-export interface UnifyErrorResponse {
+export interface UnifyResponse {
   code: number;
   message: string | string[] | ErrorMessageObject;
   request: string;

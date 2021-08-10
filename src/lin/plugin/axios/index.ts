@@ -1,13 +1,13 @@
 import axios, { AxiosRequestConfig } from 'axios'
+import { ElMessage } from 'element-plus'
 import Config from '@/config'
 import ErrorCode, { AccessTokenCodes, RefreshTokenCodes } from '@/config/error-code'
 import autoJump from '@/lin/utils/auto-jump'
 import FaultTolerance from '@/lin/plugin/axios/fault-tolerance'
 import Permission from '@/lin/plugin/axios/permission'
 import store from '@/store'
-import { ErrorMessageObject, UnifyErrorResponse } from '@/lin/models/data_type/response-types'
+import { ErrorMessageObject, UnifyResponse } from '@/lin/models/data_type/response-types'
 import { saveAccessToken } from '@/lin/utils/token'
-import { ElMessage } from 'element-plus'
 import { TokensType } from '@/lin/models/data_type/user'
 
 export interface LinAxiosRequestConfig extends AxiosRequestConfig {
@@ -68,7 +68,7 @@ _axios.interceptors.response.use(
       return res
     }
 
-    const { code, message } = res.data as UnifyErrorResponse
+    const { code, message } = res.data as UnifyResponse
 
     // refresh_token 异常，直接登出
     if (refreshTokenException(code)) {

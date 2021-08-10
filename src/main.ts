@@ -3,8 +3,8 @@ import { createApp } from 'vue'
 import ElementPlus from 'element-plus'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import locale from 'element-plus/lib/locale/lang/zh-cn'
-import 'dayjs/locale/zh-cn'
+// import locale from 'element-plus/lib/locale/lang/zh-cn'
+// import 'dayjs/locale/zh-cn'
 
 import App from '@/App.vue'
 import router from '@/router'
@@ -24,7 +24,8 @@ app
   .use(store, storeKey)
   .use(router)
 
-app.use(ElementPlus, { locale })
+// app.use(ElementPlus, { locale })
+app.use(ElementPlus)
 
 app.directive('permission', permissionDirective)
 

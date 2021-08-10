@@ -1,8 +1,29 @@
 import linAxios from '@/lin/plugin/axios'
 import { TokensType, UserInfoType, UserType } from '@/lin/models/data_type/user'
 import { saveTokens } from '@/lin/utils/token'
+import { UnifyResponse } from '@/lin/models/data_type/response-types'
 
 class UserModel {
+  static async register(user: {
+    email: string;
+    username: string;
+    password: string;
+    groupIds: number[];
+    confirmPassword: string;
+  }) {
+    return linAxios<UnifyResponse>({
+      url: 'cms/user/register',
+      method: 'post',
+      data: {
+        email: user.email,
+        username: user.username,
+        password: user.password,
+        group_ids: user.groupIds,
+        confirm_password: user.confirmPassword,
+      },
+    })
+  }
+
   /**
    * 登录获取tokens
    * @param username 用户名

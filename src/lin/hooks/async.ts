@@ -39,9 +39,16 @@ function useAsync<T, K extends unknown[]>(
     error.value = null
   }
 
+  function reset() {
+    data.value = null
+    error.value = null
+    status.value = 'idle'
+  }
+
   return {
     run,
     clearError,
+    reset,
     data: readonly(data),
     status: readonly(status),
     error: readonly(error),

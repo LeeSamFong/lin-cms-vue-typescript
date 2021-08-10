@@ -1,5 +1,6 @@
 import { LinRouteType } from '@/router/route-type'
 import Utils from '@/lin/utils/utils'
+import adminRouter from '@/config/stage/admin'
 
 // eslint-disable-next-line import/no-mutable-exports
 let stageRoutes: LinRouteType[] = [
@@ -42,6 +43,7 @@ let stageRoutes: LinRouteType[] = [
     inNav: false,
     icon: 'iconfont icon-rizhiguanli',
   },
+  adminRouter,
 ]
 
 // 处理顺序
