@@ -5,7 +5,7 @@
         <div class="header-left">
           <p class="title">日志信息</p>
         </div>
-        <div class="header-right" v-permission="'搜索日志'">
+        <div class="header-right" v-permission:hidden="'搜索日志'">
           <lin-search ref="searchKeywordDom" @query="onQueryChange"/>
           <div v-permission="'查询日志记录的用户'">
             <el-dropdown size="medium"
