@@ -46,6 +46,24 @@ class AdminModel {
       },
     })
   }
+
+  static async updateOneGroup(name: string, info: string, id: number) {
+    return linAxios<UnifyResponse>({
+      url: `cms/admin/group/${id}`,
+      method: 'put',
+      data: {
+        name,
+        info,
+      },
+    })
+  }
+
+  static async deleteOneGroup(id: number) {
+    return linAxios<UnifyResponse>({
+      url: `cms/admin/group/${id}`,
+      method: 'delete',
+    })
+  }
 }
 
 
