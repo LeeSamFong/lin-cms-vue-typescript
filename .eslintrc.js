@@ -48,7 +48,6 @@ module.exports = {
       'error',
       {
         ObjectPattern: { multiline: true },
-        ImportDeclaration: 'never',
       },
     ],
     '@typescript-eslint/explicit-module-boundary-types': 'off',

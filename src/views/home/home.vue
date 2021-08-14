@@ -16,9 +16,9 @@
                  @click="changeSidebarState"/>
               <nav-bar/>
             </div>
-            <el-collapse-transition>
+<!--            <el-collapse-transition>-->
               <reuse-tab/>
-            </el-collapse-transition>
+<!--            </el-collapse-transition>-->
           </div>
         </el-header>
         <el-main id="mainStage" ref="main">
@@ -36,10 +36,10 @@
 
 <script lang="ts">
 import { computed, defineComponent, onMounted, reactive, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import AppMain from '@/components/layout/app-main.vue'
 import emitter from '@/lin/utils/emitter'
 import Utils from '@/lin/utils/utils'
-import { useRoute } from 'vue-router'
 import Sidebar from '@/components/layout/sidebar/sidebar.vue'
 import NavBar from '@/components/layout/nav-bar.vue'
 import ReuseTab from '@/components/layout/reuse-tab.vue'

@@ -46,14 +46,22 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, getCurrentInstance, onBeforeMount, onMounted, ref, watch } from 'vue'
+import {
+  computed,
+  defineComponent,
+  getCurrentInstance,
+  onBeforeMount,
+  onMounted,
+  ref,
+  watch,
+} from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import SwiperCore, { Mousewheel } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/vue'
 import { useStore } from '@/store'
 import { LinRouteType } from '@/router/route-type'
 import emitter from '@/lin/utils/emitter'
-import { useRoute, useRouter } from 'vue-router'
 import { StageMapType } from '@/store/getters'
-import SwiperCore, { Mousewheel } from 'swiper'
-import { Swiper, SwiperSlide } from 'swiper/vue'
 
 
 SwiperCore.use([Mousewheel])
@@ -197,7 +205,7 @@ export default defineComponent({
     watch(route, () => {
       // 对路由变化作出响应...
       const flag = histories.value.find(item => item.path === route.path)
-      if (!flag) return
+      if (flag) return
 
       const ele: History = {
         path: route.path,
@@ -279,6 +287,11 @@ export default defineComponent({
   display: flex;
   align-items: center;
   overflow: hidden;
+
+  ::v-deep(.swiper-wrapper) {
+    display: flex;
+    flex-direction: row;
+  }
 
   .reuse-tab-item {
     box-sizing: border-box;
