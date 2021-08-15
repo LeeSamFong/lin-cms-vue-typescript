@@ -1,5 +1,10 @@
 import { usePagination } from '@/lin/hooks/paging'
-import { AdminGroupType, AdminUser } from '@/lin/models/data_type/admin'
+import {
+  AdminGroupType,
+  AdminPermissionsType,
+  AdminUser,
+  GroupPermissionType,
+} from '@/lin/models/data_type/admin'
 import linAxios from '@/lin/plugin/axios'
 import { UnifyResponse } from '@/lin/models/data_type/response-types'
 
@@ -14,8 +19,16 @@ class AdminModel {
     return usePagination<AdminUser>('cms/admin/users', params)
   }
 
+  static async getAllPermissions() {
+    return linAxios<AdminPermissionsType>('cms/admin/permission')
+  }
+
   static async getAlLGroups() {
     return linAxios<AdminGroupType[]>('cms/admin/group/all')
+  }
+
+  static async getOneGroup(id: number) {
+    return linAxios<GroupPermissionType>(`cms/admin/group/${id}`)
   }
 
   static deleteOneUser(id: number) {
@@ -43,6 +56,18 @@ class AdminModel {
       data: {
         new_password,
         confirm_password,
+      },
+    })
+  }
+
+  static async createOneGroup(name: string, info: string, permission_ids: number[]) {
+    return linAxios<UnifyResponse>({
+      url: 'cms/admin/group',
+      method: 'post',
+      data: {
+        name,
+        info,
+        permission_ids,
       },
     })
   }

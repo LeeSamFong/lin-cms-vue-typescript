@@ -18,11 +18,12 @@ function useAsync<T, K extends unknown[]>(
     if (loading.value) throw new Error('loading')
 
     status.value = 'loading'
-    await func(...args)
+    return func(...args)
       .then(res => {
         data.value = res as UnwrapRef<T>
         status.value = 'success'
         error.value = null
+        return res
       })
       .catch(err => {
         if (axios.isCancel(err)) {
