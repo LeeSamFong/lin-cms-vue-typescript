@@ -89,6 +89,28 @@ class AdminModel {
       method: 'delete',
     })
   }
+
+  static async dispatchPermissions(group_id: number, permission_ids: number[]) {
+    return linAxios<UnifyResponse>({
+      url: 'cms/admin/permission/dispatch/batch',
+      method: 'post',
+      data: {
+        group_id,
+        permission_ids,
+      },
+    })
+  }
+
+  static async removePermissions(group_id: number, permission_ids: number[]) {
+    return linAxios<UnifyResponse>({
+      url: 'cms/admin/permission/remove',
+      method: 'post',
+      data: {
+        group_id,
+        permission_ids,
+      },
+    })
+  }
 }
 
 
