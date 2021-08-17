@@ -1,5 +1,6 @@
 import router from '@/router'
 import Config from '@/config'
+import store from '@/store'
 
 let timer: number | null = null
 
@@ -12,7 +13,7 @@ function autoJump() {
   }
 
   timer = window.setTimeout(() => {
-    // TODO logout
+    store.dispatch('logout')
     const { origin } = window.location
     window.location.href = origin
   }, Config.stagnateTime)
