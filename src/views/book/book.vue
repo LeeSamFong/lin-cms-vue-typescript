@@ -89,6 +89,10 @@ export default defineComponent({
 
     // 重置表单
     function resetForm() {
+      if (!form.value) {
+        ElMessage.error('未知异常。')
+        return
+      }
       form.value.resetFields()
     }
 
@@ -97,6 +101,10 @@ export default defineComponent({
     const { run: createBook, loading: createLoading } = useAsync(BookModel.createBook)
 
     async function submitForm() {
+      if (!form.value) {
+        ElMessage.error('未知异常。')
+        return
+      }
       form.value.validate(async (valid: boolean) => {
         if (!valid) {
           ElMessage.error('请将信息填写完整')
@@ -121,9 +129,10 @@ export default defineComponent({
     /**
      * 会改变原对象
      */
-    function listAssign(a: { [k: string]: unknown; }, b: { [k: string]: unknown; }) {
+    type _BookType = Omit<BookType, 'id'>
+    function listAssign(a: _BookType, b: _BookType) {
       Object.keys(a).forEach(key => {
-        a[key] = b[key] || a[key]
+        a[key as keyof _BookType] = b[key as keyof _BookType] || a[key as keyof _BookType]
       })
       return a
     }
@@ -164,7 +173,7 @@ function getRules() {
   /**
    * 验证回调函数
    */
-  const checkInfo = (rule: never, value: string, callback: (e: unknown) => void) => {
+  const checkInfo = (rule: never, value: string, callback: (e?: unknown) => void) => {
     if (!value) {
       callback(new Error('信息不能为空'))
     }

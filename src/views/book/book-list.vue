@@ -42,7 +42,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import useAsync from '@/lin/hooks/async'
 import BookModel from '@/models/book'
 import { BookType } from '@/models/types/book'
-import BookModify from './book'
+import BookModify from './book.vue'
 
 export default defineComponent({
   name: 'book-list',
@@ -54,9 +54,8 @@ export default defineComponent({
     const {
       run: getBooks,
       loading: getBooksLoading,
-      data: booksData,
+      data: books,
     } = useAsync(BookModel.getBooks)
-    const books = computed<BookType>(() => booksData.value ?? [])
 
     onMounted(() => {
       getBooks()
