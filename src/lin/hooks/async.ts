@@ -1,13 +1,11 @@
 import { computed, readonly, ref } from 'vue'
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { UnwrapRef } from '@vue/reactivity'
 import axios from 'axios'
 
 
 function useAsync<T, K extends unknown[]>(
   func: (...args: K) => Promise<T>,
 ) {
-  const data = ref<T | null>(null)
+  const data = ref<T | undefined>()
   const error = ref<Error | null>(null)
   const status = ref<'idle' | 'loading' | 'error' | 'cancel' | 'success'>('idle')
   const cancel = computed(() => status.value === 'cancel')
@@ -20,7 +18,7 @@ function useAsync<T, K extends unknown[]>(
     status.value = 'loading'
     return func(...args)
       .then(res => {
-        data.value = res as UnwrapRef<T>
+        data.value = res
         status.value = 'success'
         error.value = null
         return res
@@ -41,7 +39,7 @@ function useAsync<T, K extends unknown[]>(
   }
 
   function reset() {
-    data.value = null
+    data.value = undefined
     error.value = null
     status.value = 'idle'
   }
