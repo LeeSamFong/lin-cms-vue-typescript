@@ -71,8 +71,8 @@
 
 <script lang="ts">
 import { computed, defineComponent, nextTick, ref, watch } from 'vue'
-import { useStore } from '@/store'
 import { ElMessage } from 'element-plus'
+import { useStore } from '@/store'
 import router from '@/router'
 import defaultAvatar from '@/assets/image/user/user.png'
 import UserModel from '@/lin/models/user'

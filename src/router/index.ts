@@ -1,10 +1,10 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+import { ElMessage } from 'element-plus'
 import routes from '@/router/routes'
 import Config from '@/config'
 import store from '@/store'
 import Utils from '@/lin/utils/utils'
 import { SimpleLinRouteType } from '@/router/route-type'
-import { ElMessage } from 'element-plus'
 import autoJump from '@/lin/utils/auto-jump'
 
 

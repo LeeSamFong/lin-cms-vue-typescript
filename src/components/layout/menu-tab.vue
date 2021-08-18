@@ -17,8 +17,8 @@
 
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue'
-import { useStore } from '@/store'
 import { useRoute } from 'vue-router'
+import { useStore } from '@/store'
 import { LinRouteType } from '@/router/route-type'
 
 

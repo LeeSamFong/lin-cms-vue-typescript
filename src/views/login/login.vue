@@ -35,10 +35,10 @@
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { ElMessage } from 'element-plus'
 import { useStore } from '@/store'
 import UserModel from '@/lin/models/user'
 import Config from '@/config'
-import { ElMessage } from 'element-plus'
 import Utils from '@/lin/utils/utils'
 
 export default defineComponent({

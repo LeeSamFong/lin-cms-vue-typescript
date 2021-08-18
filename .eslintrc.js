@@ -15,7 +15,10 @@ module.exports = {
     'vue/custom-event-name-casing': 'off',
     'vue/no-deprecated-slot-attribute': 'off',
     'vue/experimental-script-setup-vars': 'off',
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-console': process.env.NODE_ENV === 'production' ?
+      ['error', {
+        allow: ['warn', 'error'],
+      }] : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-shadow': 0,
     'no-plusplus': 0, // 禁止使用++，--

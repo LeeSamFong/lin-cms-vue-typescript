@@ -1,10 +1,10 @@
 import { createLogger, createStore, Store, useStore as baseUseStore } from 'vuex'
+import { InjectionKey } from 'vue'
+import VuexPersistence from 'vuex-persist'
 import state, { State } from '@/store/state'
 import mutations from '@/store/mutations'
 import actions from '@/store/actions'
-import { InjectionKey } from 'vue'
 import getters from '@/store/getters'
-import VuexPersistence from 'vuex-persist'
 
 
 const vuexLocal = new VuexPersistence<State>({

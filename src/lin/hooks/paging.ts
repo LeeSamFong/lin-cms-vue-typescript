@@ -1,8 +1,8 @@
-import { nextTick, reactive, readonly, watch } from 'vue'
+import { reactive, readonly, watch } from 'vue'
+import axios from 'axios'
 import { PageSize } from '@/config'
 import linAxios from '@/lin/plugin/axios'
 import { UnifyPageResponse } from '@/lin/models/data_type/response-types'
-import axios from 'axios'
 
 const { CancelToken } = axios
 

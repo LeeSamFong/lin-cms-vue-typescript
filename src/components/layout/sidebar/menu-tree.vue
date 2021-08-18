@@ -26,8 +26,8 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import { SideRoute } from '@/store/getters'
 import { useRouter } from 'vue-router'
+import { SideRoute } from '@/store/getters'
 
 export default defineComponent({
   name: 'MenuTree',

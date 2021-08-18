@@ -1,6 +1,6 @@
-import emitter from '@/lin/utils/emitter'
 import { EventType, Handler } from 'mitt'
 import { onMounted, onUnmounted } from 'vue'
+import emitter from '@/lin/utils/emitter'
 
 type Events = Record<EventType, unknown>
 

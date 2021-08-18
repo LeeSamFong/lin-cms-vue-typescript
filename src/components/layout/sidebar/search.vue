@@ -26,10 +26,10 @@
 
 <script lang="ts">
 import { computed, defineComponent, nextTick, onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import { useStore } from '@/store'
 import emitter from '@/lin/utils/emitter'
 import Config from '@/config'
-import { useRouter } from 'vue-router'
 import { SideRoute } from '@/store/getters'
 
 export default defineComponent({

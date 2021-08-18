@@ -5,8 +5,8 @@
 </template>
 <script>
 import Editor from '@tinymce/tinymce-vue'
-import { post } from '@/lin/plugin/axios'
 import { defineComponent } from 'vue'
+import { post } from '@/lin/plugin/axios'
 
 export default defineComponent({
   name: 'TinymceEditor',

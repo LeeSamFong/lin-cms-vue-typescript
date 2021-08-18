@@ -37,10 +37,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { useStore } from '@/store'
 import VuePictureCropper, { cropper } from 'vue-picture-cropper'
-import FileModel from '@/lin/models/file'
 import { ElMessage } from 'element-plus'
+import { useStore } from '@/store'
+import FileModel from '@/lin/models/file'
 import UserModel from '@/lin/models/user'
 
 export default defineComponent({
